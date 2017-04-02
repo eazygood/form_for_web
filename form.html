@@ -1,0 +1,113 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="modal_success.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<title>Test form</title>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+	</head>
+	<body>
+		<!-- <div style="color: red;" id="result"></div><br /> -->
+    <!--   <img src="ajax-loader.gif" id="load-indicator" alt="loading" style="position:absolute; z-index:1000; display:none;" /> -->
+        <div id="load-indicator" class="loader"></div>
+					<div id="openModal" class="modalWindow"></div>
+		<div id="main">
+			<div id="form">
+				<h1>PÄRING-AVALDUS</h1>
+				<p>аrhiivitõendi saamiseks  töötamise kohta</p>
+				<p>Tärniga<span>&#42;</span> märgitud väljad on kohustuslikud</p>
+				<h3>Taotluse esitaja andmed</h3>
+				<form id="request" name="request" action="mail_sender.php"  method="post" enctype="multipart/form-data">
+					<label for="name">Eesnimi<span>&#42;</span></label>
+					<input type="text" name="name" placeholder="Eesnimi" required /><br>
+
+					<label for="lastname">Perekonnanimi<span>&#42;</span></label>
+					<input type="text" name="lastname" placeholder="Perekonnanimi" required /><br>
+
+					<label for="birthday">Sünniaeg (aasta, kuu, päev) või isikukood<span>&#42;</span></label>
+					<input type="text" name="birthday" placeholder="Sünnipaev või isikukood" required /><br>
+
+					<label for="adress">Aadress<span>&#42;</span></label>
+					<input type="text" name="adress" placeholder="Aadress" required /><br>
+
+					<label for="phone">Telefon<span>&#42;</span></label>
+					<input type="text" name="phone" placeholder="Telefon" required /><br>
+
+					<label for="email">E-post<span>&#42;</span></label>
+					<input type="email"  name="email" placeholder="E-post" required /><br>
+
+					<h3>Kättesaamise viis</h3>
+					<div>
+						<input type="radio" name="delivery"  value="Postiga" checked /><p>Postiga</p>
+						<input type="radio" name="delivery" value="Tulen ise järele" /><p>Tulen ise järele</p>
+					</div>
+					<h2>TAOTLUSE  SISU</h2>
+					<label for="name_lastname">Ees- ja perekonnanimi töötamise ajal<span>&#42;</span></label>
+					<input type="text" name="name_lastname" placeholder="Ees- ja perekonnanimi" required /><br>
+
+					<label for="name_changes">Erinevad nimekujud ja nimemuutused,neiupõlvenimi<span>&#42;</span></label>
+					<input type="text" name="name_changes" placeholder="Erinevad nimekujud" required /><br>
+
+					<label for="comp_name">Ettevõtte nimetus(ed), osakond/tsehh<span>&#42;</span></label>
+					<textarea name="comp_name" col="10" row="4" placeholder="Ettevõtte nimetus(ed), osakond/tsehh..." required /></textarea><br>
+
+					<label for="work_time">Töötamise aeg (võimalusel kuupäevaliselt)<span>&#42;</span></label>
+					<textarea name="work_time" col="10" row="4" placeholder="Töötamise aeg..." required /></textarea><br>
+
+					<label for="speciality">Amet / eriala<span>&#42;</span></label>
+					<textarea name="speciality" col="10" row="4" placeholder="Amet / eriala" required /></textarea><br>
+
+					<label for="comments">Täpsustused, kommentaarid</label>
+					<textarea name="comments" col="10" row="4" placeholder="Täpsustused, kommentaarid..." /></textarea>
+
+					<h3>ON VAJA TÕESTADA TÖÖSTAAŽ:</h3>
+					<div>
+					<input type="checkbox" name="working_experience[]" value="A"><p>Vanaduspensioni vormistamiseks</p>
+					<input type="checkbox" name="working_experience[]" value="B"><p>Soodustingimustel vanaduspensioni vormistamiseks</p>
+					<input type="checkbox" name="working_experience[]" value="C"><p>Töövõimetuspensioni vormistamiseks töötamise kohta</p>
+					<input type="checkbox" name="working_experience[]" value="D"><p>On vaja tõestada keskmist palka (ajavahemik / kuude arv)</p>
+					</div>
+					<h3>TÕEND ON VAJALIK ESITAMISEKS:</h3>
+					<div>
+					<input type="checkbox" name="proof" value="Eesti"><p>Eesti Vabariigi Sotsiaalkindlustusametile</p>
+					<input type="checkbox" name="proof" value="Ukraine"><p>Ukraina Vabariigi Pensioni Fondile</p>
+					<input type="checkbox" name="proof" value="Belarus"><p>Valgevene Rahvavabariigi Pensionifondile</p>
+					<input type="checkbox" name="proof" value="Russia"><p>Vene Föderatsiooni Pensioni Fondile</p>
+					</div>
+					<label class="other" for="other">Muu - kirjutada saaja(asutuse)nimetus</label>
+					<input type="text" name="other" />
+					<!--
+					<div class="input_file_left"><p>Lisa fail</p></div>
+					<div class="fileform">
+						<div class="selectbutton">Lisa fail</div>
+						<input id="upload" type="file" name="uploadfile" />
+					</div>
+					<div><p class="_info">Avaldusele palume lisada järgmiste dokumentide koopiad: pass/ID-kaart (mõlemad pooled), tööraamat </p></div> -->
+					
+<!--
+					<label for="captcha_message">Enter the code above here:</label>
+
+					<div class="g-recaptcha" data-sitekey="6LcnshoUAAAAAHsA2I2iTDrGjHWHin0s3xdQBChj"></div>
+--> 
+					
+					<input id="file" name="uploadfile[]" type="file" class="uploadfile" data-multiple-caption="{count} files selected" multiple />
+					<label for="file"><span class="filesInputed">Vali faili</span></label>
+
+					
+					<div class=buttons>
+					<button id="submit" class="button" type="submit" value="submit">Saada</button>
+					<button id="close" class="button">Loobu</button>
+					<button class="button">Prindi</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<script src="app.js"></script>
+		<script src='common.js'></script>
+	</body>
+</html>

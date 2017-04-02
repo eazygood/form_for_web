@@ -1,0 +1,57 @@
+@import "https://fonts.googleapis.com/css?family=Roboto";
+
+.modalWindow {
+	position: fixed;
+	font-family: arial;
+	font-size:80%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.2);
+	z-index: 99999;
+	display: none;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+}
+#result { 
+	padding-bottom: 50px;
+	text-align: center;
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: #1cf044; 
+}
+
+.modalWindow > div {
+width: 500px;
+position: relative;
+margin: 10% auto;
+background: #fff;
+}
+
+.modalWindow .modalHeader { padding: 25px 20px 25px 110px }
+
+
+
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+}
+.close {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 22px;
+	height: 22px;
+	font-size: 10px;
+ 
+}
+
+
+.close:hover { background: #D4482D; }
+.clear { float:none; clear: both; }

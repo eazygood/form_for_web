@@ -19,15 +19,21 @@ $compName = strip_tags(filter_input(INPUT_POST,'comp_name', FILTER_SANITIZE_MAGI
 $workTime = strip_tags(filter_input(INPUT_POST,'work_time', FILTER_SANITIZE_MAGIC_QUOTES), '<p><a><b><div>');
 $speciality = strip_tags(filter_input(INPUT_POST,'speciality', FILTER_SANITIZE_MAGIC_QUOTES), '<p><a><b><div>');
 $comments = strip_tags(filter_input(INPUT_POST,'comments', FILTER_SANITIZE_MAGIC_QUOTES), '<p><a><b><div>');
-//$workingExperience = $_POST['working_experience'];
-/*
-  if (!empty($_POST['working_experience']) {
-    $tmp = '';
-    foreach($_POST['working_experience'] as $value) {
-      $tmp .= $value . ',';
-    }
+
+
+if (isset($_POST['working_experience']) && is_array($_POST['working_experience']) && count($_POST['working_experience']) > 0) {
+    $working_experience = "<ul><li>" . implode("</li><li>", $_POST['working_experience']) . "</li></ul>";
   }
-*/
+
+if (isset($_POST['proof']) && is_array($_POST['proof']) && count($_POST['proof']) > 0) {
+    $checkBoxValues = "<ul><li>" . implode("</li><li>", $_POST['proof']) . "</li></ul>";
+  } else {
+    $checkBoxValues = filter_input(INPUT_POST,'other', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW); 
+  }
+
+
+
+
 // Check, if data is not empty
 if (empty($name)) {
   die("<script>$(\"#openModal\").show(1, function() {
@@ -63,12 +69,12 @@ if (empty($name)) {
 } else if (empty($compName)) {
   die("<script>$(\"#openModal\").show(1, function() {
     $('#result').html(\"<p style=color:red;>Отсутствует должность / специальность<br>Amet / eriala puudub<p>\")});</script>");
-} /*else if (empty($workingExperience)) {
+} else if (empty($_POST['working_experience'])) {
   // Check if the one of checkboxes checked or not
   die("<script>$(\"#openModal\").show(1, function() {
    $('#result').html(\"<p style=color:red;>Отсутствует выбор подтверждения трудового стажа<br>Puudub tööstazi valik tõestamiseks<p>\")});</script>");
 }
-*/
+
 
 
 // If user choose file
@@ -89,8 +95,6 @@ if (isset($_FILES) && (bool) $_FILES) {
             for($i = 0; $i<count($file_temp); $i++) { move_uploaded_file($file_temp[$i], $server_file[$i]); }
         }
 }
-
-
 
 // If uploaded file, then headers a little different
 $headers = null;
@@ -130,14 +134,15 @@ if (empty($_FILES)) {
         <tr><td><strong>Täpsustused, kommentaarid:</strong></td><td>$comments</td></tr>
       </tbody>
     </table>
-    <thead><h3>On vaja tõestada tööstaaz:</h3></thead>
+    <table>
+      <thead><h3>On vaja tõestada tööstaaz:</h3></thead>
+      <tr><td>$working_experience</td></tr>
+      <thead><h3>Tõend on vajalik esitamiseks</h3></thead>
+      <tr><td>$checkBoxValues</td></tr>
+    </table>
   </body>
 </html>";
-  /*
-  $message = '<html><body>';
-  $message .= '<h1>Hello world</h1>';
-  $message .= '</body></html';
-  */
+
   // send
   if (!mail($to, 'Subject name goes here', $allmsg, implode("\r\n", $headers))) {
     echo 'Пиьсмо не отправлено - что то не сработало';
@@ -147,18 +152,6 @@ if (empty($_FILES)) {
 
 } else {
   // this part of code is responsible for sending an email with attachment
-   
-  /*
-  $fp = fopen($the_file, "r");
-  if (!$the_file) {
-    die("Ошибка отправка письма: Файл $the_file не может быть прочитан.");
-  } 
-
-  $file = fread($fp, filesize($path));
-  fclose($fp);
-  // delete temporary file
-  unlink($path);
-  */
   // gathering letter text
   $allmsg = "<html>
   <body>
@@ -185,7 +178,12 @@ if (empty($_FILES)) {
         <tr><td><strong>Täpsustused, kommentaarid:</strong></td><td>$comments</td></tr>
       </tbody>
     </table>
-    <thead><h3>On vaja tõestada tööstaaz:</h3></thead>
+    <table>
+      <thead><h3>On vaja tõestada tööstaaz:</h3></thead>
+      <tr><td>$working_experience</td></tr>
+      <thead><h3>Tõend on vajalik esitamiseks</h3></thead>
+      <tr><td>$checkBoxValues</td></tr>
+    </table>
   </body>
 </html>";
 
